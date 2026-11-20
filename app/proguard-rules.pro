@@ -1,0 +1,3 @@
+-keep class com.sintesistudio.data.** { *; }
+-dontwarn org.apache.pdfbox.**
+-dontwarn io.documentnode.**

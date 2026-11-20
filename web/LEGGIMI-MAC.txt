@@ -1,0 +1,22 @@
+SINTESISTUDIO SU MAC
+====================
+
+Il file .bat è solo per Windows.
+
+Su Mac il doppio clic su .command a volte NON funziona
+(Finder dice "sposta nel cestino" = blocco sicurezza macOS).
+
+>>> USA IL TERMINALE — leggi: ISTRUZIONI-MAC-SE-NON-PARTE.txt <<<
+
+
+Metodo rapido (copia nel Terminale)
+-----------------------------------
+
+  cd PERCORSO_ALLA_CARTELLA/web
+  xattr -cr .
+  python3 -m http.server 3000
+
+Poi in Chrome: http://localhost:3000
+
+
+API key Gemini in Impostazioni (non password Wi‑Fi).

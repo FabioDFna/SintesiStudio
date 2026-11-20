@@ -1,0 +1,56 @@
+MAC — SE IL DOPPIO CLIC NON FUNZIONA (o dice "sposta nel cestino")
+================================================================
+
+NON usare il doppio clic. Usa il TERMINALE (sempre funziona).
+
+
+PASSO 1 — Apri Terminale
+------------------------
+Applicazioni → Utility → Terminale
+(oppure Cmd+Spazio, scrivi "Terminale")
+
+
+PASSO 2 — Vai nella cartella web
+---------------------------------
+Trascina la cartella "web" nella finestra Terminale (si incolla il percorso).
+
+Oppure scrivi a mano, esempio:
+
+  cd ~/Downloads/web
+
+(premi Invio)
+
+
+PASSO 3 — Rimuovi blocco macOS (file da Windows)
+-------------------------------------------------
+Copia e incolla TUTTO questo blocco, poi Invio:
+
+  xattr -cr .
+  chmod +x AVVIA-CHROME.command AVVIA-PYTHON.command
+
+
+PASSO 4A — Avvio con Python (più semplice, senza Node)
+------------------------------------------------------
+  python3 -m http.server 3000
+
+Poi apri Chrome e vai a:  http://localhost:3000
+
+(Lascia il Terminale aperto. Per fermare: Ctrl+C)
+
+
+PASSO 4B — Oppure con Node (se installato)
+------------------------------------------
+  ./AVVIA-CHROME.command
+
+
+PASSO 5 — iPhone sulla stessa Wi‑Fi
+-----------------------------------
+Sul Mac nel Terminale (server acceso), altro comando:
+
+  ipconfig getifaddr en0
+
+Apri su iPhone:  http://QUELL_IP:3000
+
+
+NON spostare i file .command nel cestino — sono normali.
+Se Finder li segnala in rosso, usa solo il Terminale come sopra.

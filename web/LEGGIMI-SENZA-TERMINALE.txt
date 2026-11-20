@@ -1,0 +1,70 @@
+═══════════════════════════════════════════════════════
+  SINTESISTUDIO — SENZA SCRIVERE NEL TERMINALE
+═══════════════════════════════════════════════════════
+
+Se il Terminale "non fa nulla", usa UNO di questi metodi.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODO 1 — Doppio clic (Mac)  ★ PROVA QUESTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Apri la cartella "web" nel Finder
+   (Downloads → SintesiStudio 2 → web)
+
+2. Trova il file:
+   Apri-SintesiStudio.applescript
+
+3. Tasto DESTRO → Apri
+   (la prima volta macOS chiede conferma → Apri)
+
+4. Si aprono da soli:
+   • una finestra Terminale (NON chiuderla)
+   • Chrome con il sito
+
+5. Se Chrome resta vuoto, scrivi nella barra indirizzi:
+   http://127.0.0.1:3000
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODO 2 — Chrome senza server (più semplice)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Nella cartella web, trova:
+   SINTESI-CHROME-DIRETTO.html
+
+2. Tasto destro → Apri con → Google Chrome
+
+3. Impostazioni (ingranaggio) → API key Gemini
+
+   Serve internet. Alcuni EPUB complessi potrebbero
+   funzionare meglio con il Metodo 1.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+METODO 3 — Online (Mac e iPhone, Wi‑Fi diversi OK)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Sul Mac, vai su: https://app.netlify.com/drop
+
+2. Trascina la cartella "web" nella pagina
+
+3. Copia l'indirizzo https che ti dà (es. xxx.netlify.app)
+
+4. Aprilo su Mac o iPhone in Chrome
+
+   (Netlify può chiedere registrazione email — è il login
+    del sito, non una password dell'app)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMPORTANTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Wi‑Fi diverso tra Mac e iPhone = iPhone NON vede il Mac.
+  Usa Metodo 2 sul Mac, oppure Metodo 3 per il telefono.
+
+• API key in Impostazioni = chiave da aistudio.google.com/apikey
+  NON è la password del Wi‑Fi.
+
+• Se compare un errore, scrivi ESATTAMENTE cosa vedi a schermo.

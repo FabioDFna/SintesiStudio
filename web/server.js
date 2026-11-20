@@ -1,0 +1,73 @@
+/**
+ * Server statico minimale — non serve npm/npx.
+ * Avvia con: AVVIA-CHROME.bat
+ */
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const PORT = 3000;
+const ROOT = __dirname;
+
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "application/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".json": "application/json",
+  ".webmanifest": "application/manifest+json",
+  ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".ico": "image/x-icon",
+};
+
+function localIp() {
+  const nets = require("os").networkInterfaces();
+  for (const name of Object.keys(nets)) {
+    for (const net of nets[name] || []) {
+      if (net.family === "IPv4" && !net.internal) return net.address;
+    }
+  }
+  return "127.0.0.1";
+}
+
+const server = http.createServer((req, res) => {
+  let urlPath = decodeURIComponent(req.url.split("?")[0]);
+  if (urlPath === "/") urlPath = "/index.html";
+
+  const filePath = path.normalize(path.join(ROOT, urlPath));
+  if (!filePath.startsWith(ROOT)) {
+    res.writeHead(403);
+    res.end("Forbidden");
+    return;
+  }
+
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      if (urlPath === "/favicon.ico") {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+      res.writeHead(404);
+      res.end("Not found");
+      return;
+    }
+    const ext = path.extname(filePath).toLowerCase();
+    res.writeHead(200, { "Content-Type": MIME[ext] || "application/octet-stream" });
+    res.end(data);
+  });
+});
+
+server.listen(PORT, "0.0.0.0", () => {
+  const ip = localIp();
+  console.log("");
+  console.log("  SintesiStudio — apri in Chrome:");
+  console.log("");
+  console.log("  Su questo computer:  http://127.0.0.1:" + PORT);
+  console.log("                       http://localhost:" + PORT);
+  console.log("  Su telefono (Wi-Fi): http://" + ip + ":" + PORT);
+  console.log("  (stessa Wi-Fi, Chrome o Safari)");
+  console.log("");
+  console.log("  Chiudi questa finestra per fermare il server.");
+  console.log("");
+});

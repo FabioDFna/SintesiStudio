@@ -1,0 +1,37 @@
+ERRORE CORS / file:// — SOLUZIONE
+=================================
+
+Chrome BLOCCA index.html se lo apri con doppio clic (file://).
+Vedrai errori tipo "blocked by CORS policy".
+
+NON aprire:  file:///.../index.html
+
+USA UNO DI QUESTI:
+
+
+★ OPZIONE A — Un solo file (più semplice)
+-----------------------------------------
+1. Nella cartella web apri con Chrome:
+
+   sintesi-standalone.html
+
+   (tasto destro → Apri con → Google Chrome)
+
+2. Tutto in un file, niente CORS.
+
+
+★ OPZIONE B — Server locale (index.html completo)
+-------------------------------------------------
+1. Tasto destro su Apri-SintesiStudio.applescript → Apri
+2. Lascia aperta la finestra Terminale
+3. Chrome apre: http://127.0.0.1:3000
+
+NON usare file://
+
+
+★ OPZIONE C — Terminale (3 righe)
+---------------------------------
+cd "/Users/cirodifusco/Downloads/SintesiStudio - Copia/web"
+python3 -m http.server 3000 --bind 127.0.0.1
+
+Poi Chrome: http://127.0.0.1:3000

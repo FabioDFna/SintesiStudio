@@ -1,0 +1,70 @@
+"SITO NON RAGGIUNGIBILE" — COSA FARE
+====================================
+
+Significa che il server NON è acceso (o la finestra Terminale è chiusa).
+
+
+PASSO 1 — Terminale, vai SOLO nella cartella web
+------------------------------------------------
+cd "/Users/cirodifusco/Downloads/SintesiStudio 2/web"
+
+Verifica:
+  ls index.html
+
+Deve dire che il file esiste. Se "No such file", il percorso è sbagliato.
+
+
+PASSO 2 — Avvia (copia tutto il blocco)
+---------------------------------------
+chmod +x avvia-mac.sh
+./avvia-mac.sh
+
+Devi vedere qualcosa tipo:
+  "Serving HTTP on 127.0.0.1 port 3000"
+  oppure messaggi del server Node.
+
+NON chiudere il Terminale. NON premere Ctrl+C.
+
+
+PASSO 3 — Apri il browser A MANO
+--------------------------------
+Usa ESATTAMENTE questo indirizzo (con http, non https):
+
+  http://127.0.0.1:3000
+
+oppure
+
+  http://localhost:3000
+
+
+PASSO 4 — Se ancora non va
+--------------------------
+Con il Terminale ancora aperto, apri un SECONDO Terminale e scrivi:
+
+  curl -I http://127.0.0.1:3000
+
+Se risponde "HTTP/1.0 200" o "HTTP/1.1 200" → il server funziona,
+il problema è solo Chrome (prova Safari).
+
+Se risponde "Connection refused" → il server non è partito:
+ripeti PASSO 2 e leggi eventuali errori rossi nel Terminale.
+
+
+ERRORI COMUNI
+-------------
+• Chiudi la finestra Terminale → il sito smette di funzionare
+• Usi https:// → sbagliato, usa http://
+• Sei su iPhone ma il Mac non ha il server avviato
+• Cartella sbagliata (non quella con index.html dentro)
+
+
+IPHONE (solo dopo che funziona sul Mac)
+---------------------------------------
+Nel Terminale con server acceso:
+
+  python3 -m http.server 3000 --bind 0.0.0.0
+
+Poi sul Mac:
+  ipconfig getifaddr en0
+
+Su iPhone (stessa Wi‑Fi): http://QUELL_IP:3000

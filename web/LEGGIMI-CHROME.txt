@@ -1,0 +1,48 @@
+SINTESISTUDIO — USO CON GOOGLE CHROME
+=====================================
+
+WINDOWS → AVVIA-CHROME.bat
+MAC     → AVVIA-CHROME.command  (vedi LEGGIMI-MAC.txt)
+
+NON serve npx, npm né Netlify.
+
+
+PASSO 1 — Sul PC (Windows)
+--------------------------
+1. Apri la cartella:
+   C:\Users\Utente New\Projects\SintesiStudio\web
+
+2. Doppio clic su:
+   AVVIA-CHROME.bat
+
+3. Si apre Chrome su: http://localhost:3000
+   (Lascia la finestra nera aperta mentre usi l'app)
+
+
+PASSO 2 — Impostazioni nell'app
+-------------------------------
+1. Tocca l'ingranaggio
+2. Incolla la API KEY Gemini (da aistudio.google.com/apikey)
+   → NON è la password del Wi-Fi
+3. Salva
+
+
+PASSO 3 — Su iPhone (Chrome o Safari)
+-------------------------------------
+1. PC e telefono sulla STESSA Wi-Fi
+2. Nella finestra nera del server leggi la riga:
+   "Su telefono: http://192.168.x.x:3000"
+3. Apri quell'indirizzo nell'app Chrome sul telefono
+
+
+Se AVVIA-CHROME.bat dice "Node.js non trovato"
+------------------------------------------------
+Installa Node.js LTS: https://nodejs.org
+Poi riprova il file .bat
+
+
+Problemi comuni
+---------------
+- Pagina bianca → usa http://localhost:3000 (non aprire index.html con doppio clic)
+- Sintesi non parte → controlla API key in Impostazioni
+- Telefono non si connette → stessa Wi-Fi, disattiva dati mobili sul telefono

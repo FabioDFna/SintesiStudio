@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="theme-color" content="#1B5E20" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>SintesiStudio</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js"></script>
+  </head>
+  <body>
+    <script>
+      if (location.protocol === "file:") {
+        document.addEventListener("DOMContentLoaded", function () {
+          var b = document.createElement("div");
+          b.style.cssText = "position:fixed;inset:0;background:#1b5e20;color:#fff;padding:24px;z-index:9999;font-family:system-ui";
+          b.innerHTML = "<h2>Apri SintesiStudio correttamente</h2><p>Chrome blocca questa pagina con <b>file://</b>.</p><p><b>Soluzione 1:</b> apri <b>sintesi-standalone.html</b> (stessa cartella) con Chrome.</p><p><b>Soluzione 2:</b> doppio clic su <b>Apri-SintesiStudio.applescript</b>, poi vai su <b>http://127.0.0.1:3000</b></p>";
+          document.body.prepend(b);
+        });
+      }
+    </script>
+    <!-- Home -->
+    <div id="view-home">
+      <header>
+        <h1>SintesiStudio</h1>
+        <button type="button" class="icon-btn" id="btn-settings" aria-label="Impostazioni">⚙️</button>
+      </header>
+      <main>
+        <div id="doc-list"></div>
+      </main>
+      <button type="button" class="fab" id="fab-import" aria-label="Importa">+</button>
+      <input
+        type="file"
+        id="file-input"
+        accept=".pdf,.epub,.ipub,.txt,application/pdf,application/epub+zip,text/plain"
+      />
+    </div>
+
+    <!-- Document -->
+    <div id="view-doc" class="hidden">
+      <header>
+        <button type="button" class="icon-btn" id="btn-back-home" aria-label="Indietro">←</button>
+        <h1 id="doc-title">Documento</h1>
+      </header>
+      <main>
+        <p id="doc-warnings" class="warn hidden"></p>
+        <div class="tabs">
+          <button type="button" class="tab active" data-tab="summary">Sintesi</button>
+          <button type="button" class="tab" data-tab="audio">Podcast TTS</button>
+          <button type="button" class="tab" data-tab="qa">Q&amp;A</button>
+        </div>
+
+        <div id="panel-summary" class="panel active">
+          <p class="meta">Riassunto ampio per capitoli/macro-aree.</p>
+          <button type="button" id="btn-summary">Genera sintesi</button>
+          <div id="summary-out" class="output card" style="margin-top:12px"></div>
+        </div>
+
+        <div id="panel-audio" class="panel">
+          <p class="meta">Pronta per la lettura vocale (stile podcast).</p>
+          <div class="row" style="margin:12px 0">
+            <button type="button" id="btn-play">▶ Ascolta</button>
+            <button type="button" class="secondary" id="btn-stop">Stop</button>
+            <button type="button" id="btn-audio">Genera script</button>
+          </div>
+          <div id="audio-out" class="output card"></div>
+        </div>
+
+        <div id="panel-qa" class="panel">
+          <div id="chat-box" class="chat"></div>
+          <div class="row">
+            <input type="text" id="question" placeholder="Chiedi su un capitolo…" />
+            <button type="button" id="btn-ask">Invia</button>
+          </div>
+        </div>
+
+        <div id="loading" class="loading hidden">Elaborazione in corso…</div>
+      </main>
+    </div>
+
+    <!-- Settings -->
+    <div id="view-settings" class="hidden">
+      <header>
+        <button type="button" class="icon-btn" id="btn-back-settings" aria-label="Indietro">←</button>
+        <h1>Impostazioni</h1>
+      </header>
+      <main>
+        <label for="api-key">API key Gemini (non è la password del Wi‑Fi)</label>
+        <input type="text" id="api-key" autocomplete="off" spellcheck="false" placeholder="Incolla la chiave da aistudio.google.com/apikey" />
+        <label for="model-select">Modello AI</label>
+        <select id="model-select">
+          <option value="gemini-1.5-flash">Flash 1.5 (consigliato, free tier)</option>
+          <option value="gemini-2.5-flash">Flash 2.5</option>
+          <option value="gemini-2.5-flash-lite">Flash-Lite 2.5</option>
+          <option value="gemini-2.0-flash-lite">Flash-Lite 2.0</option>
+        </select>
+        <p class="meta">Se vedi errore 429: attendi qualche minuto. L'app prova modelli alternativi in automatico.</p>
+        <button type="button" id="btn-save-settings" style="width:100%;margin-top:16px">Salva</button>
+      </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/prompts.js"></script>
+    <script src="js/chunker.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/gemini.js"></script>
+    <script src="js/parsers.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
